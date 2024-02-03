@@ -7,4 +7,5 @@ account backend repo
 
 # 멤버
 - 남순식
+- 이예솔하
 - 유경록
