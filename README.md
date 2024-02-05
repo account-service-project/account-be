@@ -9,3 +9,4 @@ account backend repo
 - 남순식
 - 이예솔하
 - 유경록
+- 임대용
