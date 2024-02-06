@@ -1,5 +1,6 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_smorest import Api
+from domain.db_connect import db
 
 from config.app_constants import SQLALCHEMY_DATABASE_URI
 
@@ -9,16 +10,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # SQLALCHEMY 이벤트를 
 app.config["SQLALCHEMY_ECHO"] = True  # ddl을 볼 수 있는 옵션
 app.config['DEBUG'] = True  # debug모드 옵션
 
-db = SQLAlchemy(app)
-
-with app.app_context():
-    db.create_all()
-
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+_db = db
+_db.init_app(app)
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        _db.create_all()
+
     app.run(host='localhost', port=5000, debug=True)
