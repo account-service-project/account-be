@@ -1,8 +1,8 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
 
-from service.account.account_service import AccountService
-from domain.account.account_schemas import AccountSchema
+from service.account.service import AccountService
+from domain.account.schemas import AccountSchema
 
 account_bp = Blueprint('account_controller', 'account_controller', url_prefix='/accounts', description='계좌 개설')
 

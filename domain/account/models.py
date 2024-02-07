@@ -5,7 +5,7 @@ _db = db
 
 
 class Account(_db.Model):
-    id: int = db.Column(_db.Integer, primary_key=True, nullable=False, autoincrement=True)
+    id: int = _db.Column(_db.Integer, primary_key=True, nullable=False, autoincrement=True)
     account_number: str = _db.Column(_db.String(30), unique=True, nullable=False)
     current_balance: float = _db.Column(_db.Float, nullable=False, default=INITIAL_BALANCE)
     member_id: int = _db.Column(_db.Integer, _db.ForeignKey('member.id'), nullable=False)

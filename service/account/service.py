@@ -1,7 +1,7 @@
 import random
 from flask_smorest import abort
-from domain.account.account_repository import AccountRepository
-from domain.account.account_models import Account
+from domain.account.repository import AccountRepository
+from domain.account.models import Account
 from config.constants import ACCOUNT_LIMIT, EXCESS_ERROR_MESSAGES
 
 
