@@ -15,4 +15,3 @@ class AccountController(MethodView):
     @account_bp.response(201, AccountSchema)
     def post(self, member_id: int):
         return self.account_service.create_account(member_id)
-
