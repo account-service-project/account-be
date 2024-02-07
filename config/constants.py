@@ -1,0 +1,4 @@
+ACCOUNT_LIMIT = 2
+INITIAL_BALANCE = 0
+
+EXCESS_ERROR_MESSAGES = 'Account number exceeds'
