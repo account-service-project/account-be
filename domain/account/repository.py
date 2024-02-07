@@ -1,5 +1,5 @@
 from domain.db_connect import db
-from domain.account.account_models import Account
+from domain.account.models import Account
 
 
 class AccountRepository:

@@ -3,7 +3,7 @@ from flask_smorest import Api
 from domain.db_connect import db
 from domain.member.models import Member
 from controller.member.member_controller import member_bp
-from controller.account.account_controller import account_bp
+from controller.account.controller import account_bp
 
 from config.app_constants import SQLALCHEMY_DATABASE_URI
 
