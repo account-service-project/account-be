@@ -33,3 +33,23 @@ class AccountService:
             account_number = self.create_account_number()
             account = Account(account_number=account_number, member_id=member_id)
             return self.repository.save(account)
+
+    def get_accounts_list(self, member_id: int):
+        if self.count_account(member_id=member_id) > 0:
+            accounts = self.repository.get_all_accounts(member_id=member_id)
+            account_list = []
+            for account in accounts:
+                account_dict = {
+                    'id':account.id,
+                    'account_number':account.account_number,
+                    'current_balance':account.current_balance,
+                    'member_id':account.member_id,
+                    'created_data':account.created_date
+                }
+                account_list.append(account_dict)
+            return account_list
+        else : 
+            abort(400, "해당유저는 계좌가 존재하지 않습니다.")
+        
+    def delete_account(self, member_id: int, account_id: int):
+        return self.repository.delete_account(member_id=member_id, account_id=account_id)
