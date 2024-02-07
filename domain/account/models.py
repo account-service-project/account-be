@@ -1,3 +1,4 @@
+from datetime import datetime
 from domain.db_connect import db
 from config.constants import INITIAL_BALANCE
 
@@ -10,6 +11,8 @@ class Account(_db.Model):
     current_balance: float = _db.Column(_db.Float, nullable=False, default=INITIAL_BALANCE)
     member_id: int = _db.Column(_db.Integer, _db.ForeignKey('member.id'), nullable=False)
     # member_id: int = _db.relationship('Member', db.ForeignKey('member.id'), nullable=False) # debug
+    created_date: datetime = _db.Column(_db.DateTime, nullable=False, default=datetime.now())
+    modified_date: datetime = _db.Column(_db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     def __init__(self, account_number: str, member_id: int):
         self.account_number = account_number
