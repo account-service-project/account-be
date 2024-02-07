@@ -5,11 +5,11 @@ _db = db
 
 
 class Account(_db.Model):
-    # __tablename__ = 'account'
     id: int = db.Column(_db.Integer, primary_key=True, nullable=False, autoincrement=True)
     account_number: str = _db.Column(_db.String(30), unique=True, nullable=False)
-    current_balance: float = _db.Column(_db.Float, nullable=False, default=0)
-    member_id: int = db.Column(_db.Integer, db.ForeignKey('member.id'), nullable=False)
+    current_balance: float = _db.Column(_db.Float, nullable=False, default=INITIAL_BALANCE)
+    member_id: int = _db.Column(_db.Integer, _db.ForeignKey('member.id'), nullable=False)
+    # member_id: int = _db.relationship('Member', db.ForeignKey('member.id'), nullable=False) # debug
 
     def __init__(self, account_number: str, member_id: int):
         self.account_number = account_number

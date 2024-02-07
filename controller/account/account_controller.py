@@ -12,7 +12,6 @@ class AccountController(MethodView):
     def __init__(self):
         self.account_service = AccountService()
 
-    @account_bp.arguments(AccountSchema)
     @account_bp.response(201, AccountSchema)
     def post(self, member_id: int):
         return self.account_service.create_account(member_id)
