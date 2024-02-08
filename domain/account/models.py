@@ -18,3 +18,11 @@ class Account(_db.Model):
         self.account_number = account_number
         self.current_balance = INITIAL_BALANCE
         self.member_id = member_id
+
+    def __iter__(self):
+        yield 'id', self.id
+        yield 'account_number', self.account_number
+        yield 'current_balance', self.current_balance
+        yield 'member_id', self.member_id
+        yield 'created_date', self.created_date
+        yield 'modified_date', self.modified_date

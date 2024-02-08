@@ -3,6 +3,7 @@ from flask_smorest import abort
 from domain.account.repository import AccountRepository
 from domain.account.models import Account
 from config.constants import ACCOUNT_LIMIT, EXCESS_ERROR_MESSAGES
+from flask import jsonify
 
 
 class AccountService:
@@ -35,21 +36,13 @@ class AccountService:
             return self.repository.save(account)
 
     def get_accounts_list(self, member_id: int):
-        if self.count_account(member_id=member_id) > 0:
-            accounts = self.repository.get_all_accounts(member_id=member_id)
-            account_list = []
-            for account in accounts:
-                account_dict = {
-                    'id':account.id,
-                    'account_number':account.account_number,
-                    'current_balance':account.current_balance,
-                    'member_id':account.member_id,
-                    'created_data':account.created_date
-                }
-                account_list.append(account_dict)
-            return account_list
-        else : 
-            abort(400, "해당유저는 계좌가 존재하지 않습니다.")
+        if self.count_account(member_id=member_id) < 0:
+            abort(400, "no account in")
+       
+        accounts = self.repository.get_all_accounts(member_id=member_id)
+        account_list = [dict(account) for account in accounts]
+        return account_list
         
     def delete_account(self, member_id: int, account_id: int):
-        return self.repository.delete_account(member_id=member_id, account_id=account_id)
+        self.repository.delete_account(member_id=member_id, account_id=account_id)
+        return jsonify(message="success")

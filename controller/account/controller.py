@@ -5,7 +5,6 @@ from domain.account.schemas import AccountSchema
 
 account_bp = Blueprint('account_controller', 'account_controller', url_prefix='/accounts', description='계좌 개설')
 
-@account_bp.route('/')
 class AccountController(MethodView):
     def __init__(self):
         self.account_service = AccountService()
