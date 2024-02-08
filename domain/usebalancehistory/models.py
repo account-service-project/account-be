@@ -1,28 +1,27 @@
 from datetime import datetime
 from domain.db_connect import db
-from config.constants import INITIAL_BALANCE
+from config.constants import INITIAL_BALANCE, INITIAL_USE_BALANCE
 
 _db = db
 
 
 class Account(_db.Model):
     id: int = _db.Column(_db.Integer, primary_key=True, nullable=False, autoincrement=True)
-    account_number: str = _db.Column(_db.String(30), unique=True, nullable=False)
+    use_balance: float = _db.Column(_db.float, nullable=False, default=INITIAL_USE_BALANCE)
     current_balance: float = _db.Column(_db.Float, nullable=False, default=INITIAL_BALANCE)
-    member_id: int = _db.Column(_db.Integer, _db.ForeignKey('member.id'), nullable=False)
-    # member_id: int = _db.relationship('Member', db.ForeignKey('member.id'), nullable=False) # debug
     created_date: datetime = _db.Column(_db.DateTime, nullable=False, default=datetime.now())
+    account_id: int = _db.Column(_db.Integer, _db.ForeignKey('account.id'), nullable=False)
     modified_date: datetime = _db.Column(_db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
-    def __init__(self, account_number: str, member_id: int):
-        self.account_number = account_number
+    def __init__(self, account_id: int, created_date: datetime):
+        self.use_balance = INITIAL_USE_BALANCE
         self.current_balance = INITIAL_BALANCE
-        self.member_id = member_id
+        self.account_id = account_id
+        self.created_date = created_date
 
     def __iter__(self):
         yield 'id', self.id
-        yield 'account_number', self.account_number
+        yield 'use_balance', self.use_balance
         yield 'current_balance', self.current_balance
-        yield 'member_id', self.member_id
         yield 'created_date', self.created_date
         yield 'modified_date', self.modified_date

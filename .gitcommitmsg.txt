@@ -1,7 +1,0 @@
-# [feature/find_account-1] 계좌 조회 및 삭제 기능 개발
-
-- account 컨트롤러 수정(get, delete 메서드 추가, add_url_rule 추가)
-- account service.py의 조회, 삭제기능 관련 함수 추가
-- account repository.py의 조회,삭제 쿼리 기능 함수 추가
-
-closes #15

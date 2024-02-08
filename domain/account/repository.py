@@ -27,4 +27,3 @@ class AccountRepository:
         delete_to_account = Account.query.filter(Account.member_id == member_id, Account.id == account_id).first_or_404()
         db.session.delete(delete_to_account)
         db.session.commit()
-        return {"success": True, "message":"계좌가 삭제되었습니다."}
