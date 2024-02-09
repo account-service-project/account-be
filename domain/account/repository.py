@@ -11,11 +11,15 @@ class AccountRepository:
 
     @staticmethod
     def get_by_account_number(account_number: str):
-        return db.session.query(Account).filter(Account.account_number == account_number).first()
+        return Account.query.filter(Account.account_number == account_number).first()
+    
+    @staticmethod
+    def get_by_account_id(account_id: str):
+        return Account.query.filter(Account.id == account_id).first()
 
     @staticmethod
     def get_count_account(member_id: int) -> int:
-        return db.session.query(Account).filter(Account.member_id == member_id).count()
+        return Account.query.filter(Account.member_id == member_id).count()
 
     @staticmethod
     def get_all_accounts(member_id: int):

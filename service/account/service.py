@@ -36,7 +36,7 @@ class AccountService:
             return self.repository.save(account)
 
     def get_accounts_list(self, member_id: int):
-        if self.count_account(member_id=member_id) < 0:
+        if self.count_account(member_id=member_id) < 1:
             abort(400, "no account in")
        
         accounts = self.repository.get_all_accounts(member_id=member_id)
