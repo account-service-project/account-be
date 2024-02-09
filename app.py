@@ -4,6 +4,7 @@ from domain.db_connect import db
 from domain.member.models import Member
 from controller.member.member_controller import member_bp
 from controller.account.controller import account_bp
+from controller.transaction.controller import transaction_bp
 
 from config.app_constants import SQLALCHEMY_DATABASE_URI
 
@@ -26,6 +27,7 @@ _db.init_app(app)
 api = Api(app)
 api.register_blueprint(member_bp)
 api.register_blueprint(account_bp)
+api.register_blueprint(transaction_bp)
 
 if __name__ == '__main__':
     with app.app_context():
